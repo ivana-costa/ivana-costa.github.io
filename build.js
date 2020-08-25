@@ -28,7 +28,7 @@ metalsmith(__dirname)
     source: 'src/assets/',
     destination: './assets'
   }))
-  .destination('build')
+  .destination('dist')
   .build(function (err) {
     if (err) throw err;
     console.log('Finished building :)');
