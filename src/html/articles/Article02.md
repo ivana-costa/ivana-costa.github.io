@@ -1,7 +1,7 @@
 ---
-title: Lorem ipsum dolor sit amet, possit fastidii consetetur ne eos, minim facilisis similique ut est
+title: Lorem ipsum dolor sit amet, possit fastidii consetetur ne eos, minim facilisis similique ut esttt
 author: Ivana Costa
-date: 2017-10-10
+date: 2017-10-09
 template: article.jade
 ---
 

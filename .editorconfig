@@ -4,7 +4,11 @@ insert_final_newline = true
 charset = utf-8
 
 [*.{js,tag,html,ejs,scss,styl,hbs}]
-indent_style = tab
+indent_style = space
+indent_size = 2
+
+[*.{jade}]
+indent_style = space
 indent_size = 2
 
 [*.json]
