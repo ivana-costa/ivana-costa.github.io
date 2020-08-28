@@ -7,7 +7,8 @@ var collections = require('metalsmith-collections');
 var markdown = require('metalsmith-markdown');
 var templates = require('metalsmith-templates');
 var watch = require('metalsmith-watch');
-var serve = require('metalsmith-serve');
+var sass = require('metalsmith-sass');
+var metalsmithExpress = require('metalsmith-express');
 
 metalsmith(__dirname)
   .source('src/html')
@@ -31,23 +32,25 @@ metalsmith(__dirname)
     source: 'src/assets/',
     destination: './assets'
   }))
+  .use(sass({
+    sourceMap: true,
+    sourceMapContents: true,
+    outputDir: 'assets/css/'
+  }))
   .destination('dist')
+  .use(metalsmithExpress())
   .use(
     watch({
       paths: {
         './src/html/*.html': '**/*.html',
         './src/html/articles/*': '**/*.md',
         './src/templates/*': '**/*.html',
-      }
+        './src/assets/scss/*': true,
+        './src/assets/js/*': true,
+      },
+      livereload: true,
     })
   )
-  .use(serve({
-    port: 8081,
-    verbose: true,
-    http_error_files: {
-      404: '/404'
-    }
-  }))
   .build(function (err) {
     if (err) throw err;
     console.log('Finished building :)');
