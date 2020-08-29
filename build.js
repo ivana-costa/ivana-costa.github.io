@@ -9,6 +9,8 @@ var templates = require('metalsmith-templates');
 var watch = require('metalsmith-watch');
 var sass = require('metalsmith-sass');
 var metalsmithExpress = require('metalsmith-express');
+var layouts = require('metalsmith-layouts');
+var autoprefixer = require('metalsmith-autoprefixer');
 
 metalsmith(__dirname)
   .source('src/html')
@@ -28,10 +30,15 @@ metalsmith(__dirname)
     engine: 'jade',
     directory: 'src/templates'
   }))
+  // .use(layouts({
+  //   pageExt: ['hbs', 'html'],
+  //   partials: 'src/partials/*.{html}'
+  // }))
   .use(assets({
     source: 'src/assets/',
     destination: './assets'
   }))
+  .use(autoprefixer())
   .use(sass({
     sourceMap: true,
     sourceMapContents: true,
